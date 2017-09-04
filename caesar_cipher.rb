@@ -5,16 +5,16 @@
 # 66.chr => B
 
 def caesar_cipher(message, shift)
-  encrypted = message.scan(/./).map do |letter|
+  encrypted = message.each_char.map do |letter|
     # If the element is a letter
     if (letter =~ /\w/) == 0
       # If it's upcase and shifting beyond Z
-      if (letter.ord >= 65 && letter.ord <= 90) && letter.ord.+(shift) > 90
+      if letter.between?("A", "Z") && letter.ord.+(shift) > "Z".ord
         # I minus 1 because a difference of 1 is A and not B
         difference = (letter.ord + shift) % 90 - 1
         letter = 65.+(difference).chr
       # If it's downcase and shifting beyond z
-      elsif (letter.ord >= 97 && letter.ord <= 122) && letter.ord.+(shift) > 122
+      elsif letter.between?("a", "z") && letter.ord.+(shift) > "z".ord
         # I minus 1 because a difference of 1 is a and not b
         difference = (letter.ord + shift) % 122 - 1
         letter = 97.+(difference).chr
@@ -30,3 +30,6 @@ def caesar_cipher(message, shift)
 
   encrypted.join
 end
+
+# caesar_cipher("What a string!", 5)
+# => "Bmfy f xywnsl!"
