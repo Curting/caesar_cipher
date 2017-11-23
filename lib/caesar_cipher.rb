@@ -31,5 +31,7 @@ def caesar_cipher(message, shift)
   encrypted.join
 end
 
-# caesar_cipher("What a string!", 5)
+puts caesar_cipher("What a string!", 8)
 # => "Bmfy f xywnsl!"
+
+puts caesar_cipher("tHiS is A Test", 3)
